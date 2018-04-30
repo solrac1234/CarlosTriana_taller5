@@ -1,4 +1,4 @@
-all: cuerda.gif
+
 
 cuerda.gif: cuerda.cpp animacion.py
 	c++ cuerda.cpp
