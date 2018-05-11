@@ -1,10 +1,13 @@
+import numpy as np
 import matplotlib.pyplot as plt
-import numpy 
 
-E = numpy.genfromtxt("cElectrico.txt")
-V = numpy.genfromtxt("placas.txt")
+V = np.genfromtxt("placas.txt")
+E = np.genfromtxt("cElectrico.txt")
 
-n = numpy.size(E,1) ; n2 = int(n/2)
-Ex = E[:,:n2] ;Ey = E[:,n2:] ; X,Y = numpy.meshgrid(range(n2),range(n2))
-plt.figure()
-plt.imshow(V,cmap='autumn'); plt.colorbar(); plt.streamplot(X,Y,Ex,Ey, density=2.0, linewidth=0.5,color='k') ;plt.savefig('placas.pdf')
+Ex = E[:,:(int(np.size(E,1)/2))]
+Ey = E[:,(int(np.size(E,1)/2)):]
+x,y = np.meshgrid(range(int(np.size(E,1)/2)),range(int(np.size(E,1)/2)))
+
+plt.imshow(V,cmap='seismic'); plt.colorbar()
+plt.streamplot(x,y,Ex,Ey, density=2.0, linewidth=0.5,color='k')
+plt.savefig('placas.pdf')
